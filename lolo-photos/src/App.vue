@@ -8,7 +8,6 @@
       shrink-on-scroll
       src="./assets/tree.jpg"
       scroll-threshold="200"
-      color="#457DEB"
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -18,7 +17,7 @@
       </template>
 
       <v-spacer />
-      <v-toolbar-title>Lolo's Photos</v-toolbar-title>
+      <v-toolbar-title class="h1">Lolo's Photos</v-toolbar-title>
        <v-spacer />
       <template v-slot:extension>
         <v-tabs centered>
