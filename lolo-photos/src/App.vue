@@ -22,7 +22,7 @@
       <template v-slot:extension>
         <v-tabs centered>
           <v-tab @click="toPhotos">Mes photos</v-tab>
-          <v-tab @click="toShooting">Shooting</v-tab>
+          <v-tab @click="toShooting">Ajouter votre photo</v-tab>
           <v-tab @click="toContact">Me contacter</v-tab>
         </v-tabs>
       </template>

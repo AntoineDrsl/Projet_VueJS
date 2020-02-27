@@ -17,11 +17,10 @@
                 hide-details
                 label="Animaux, paysage, nourriture..."
                 solo-inverted
-                @keydown="show()"
             ></v-autocomplete>
         </v-toolbar>
         <div class="row mx-auto">
-          <div class="col-md-4 w-100 h-100" v-for="(photo, index) of photos" :key="index">
+          <div class="col-md-4 w-100 h-100" v-for="(photo, index) of filteredPhotos" :key="index">
             <img :src="getImgUrl(photo.name)" class="d-block w-100" :alt="photo.category">
           </div>
         </div>
@@ -46,25 +45,34 @@ export default {
           'Fantaisie'
         ],
         photos: [
-          { name: 'castle.jpg', category: 'ville' },
-          { name: 'cat.jpg', category: 'animaux' },
-          { name: 'clouds.jpg', category: 'fantaisie' },
-          { name: 'elephant.jpg', category: 'animaux' },
-          { name: 'fisherman.jpg', category: 'paysage' },
-          { name: 'frog.jpg', category: 'animaux' },
-          { name: 'galaxy.jpg', category: 'fantaisie' },
-          { name: 'gallo.jpg', category: 'animaux' },
-          { name: 'girl.jpg', category: 'femme' },
-          { name: 'landscape.jpg', category: 'paysage' },
-          { name: 'moulin.jpg', category: 'paysage' },
-          { name: 'mountains.jpg', category: 'paysage' },
-          { name: 'sad.jpg', category: 'femme' },
-          { name: 'street.jpg', category: 'ville' },
-          { name: 'sunset.jpg', category: 'paysage' },
-          { name: 'tree.jpg', category: 'paysage' },
-          { name: 'woman.jpg', category: 'femme' },
-          { name: 'women.jpg', category: 'femme' }
+          { name: 'castle.jpg', category: 'Ville' },
+          { name: 'cat.jpg', category: 'Animaux' },
+          { name: 'clouds.jpg', category: 'Fantaisie' },
+          { name: 'elephant.jpg', category: 'Animaux' },
+          { name: 'fisherman.jpg', category: 'Paysage' },
+          { name: 'frog.jpg', category: 'Animaux' },
+          { name: 'galaxy.jpg', category: 'Fantaisie' },
+          { name: 'gallo.jpg', category: 'Animaux' },
+          { name: 'girl.jpg', category: 'Femme' },
+          { name: 'landscape.jpg', category: 'Paysage' },
+          { name: 'moulin.jpg', category: 'Paysage' },
+          { name: 'mountains.jpg', category: 'Paysage' },
+          { name: 'sad.jpg', category: 'Femme' },
+          { name: 'street.jpg', category: 'Ville' },
+          { name: 'sunset.jpg', category: 'Paysage' },
+          { name: 'tree.jpg', category: 'Paysage' },
+          { name: 'woman.jpg', category: 'Femme' },
+          { name: 'women.jpg', category: 'Femme' }
         ]
+      }
+    },
+    computed: {
+      filteredPhotos: function() {
+        if(!this.select) {
+          return this.photos
+        } else {
+          return this.photos.filter(photo => photo.category === this.select);
+        }
       }
     },
     watch: {
@@ -83,10 +91,7 @@ export default {
         }, 500)
       },
       getImgUrl: function(photo) {
-        return require('../assets/' + photo)
-      },
-      show: function() {
-        console.log(this.select)
+          return require('../assets/' + photo)
       }
     }
 }
