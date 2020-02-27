@@ -15,10 +15,16 @@
                 flat
                 hide-no-data
                 hide-details
-                label="Animal, paysage, nourriture..."
+                label="Animaux, paysage, nourriture..."
                 solo-inverted
+                @keydown="show()"
             ></v-autocomplete>
         </v-toolbar>
+        <div class="row mx-auto">
+          <div class="col-md-4 w-100 h-100" v-for="(photo, index) of photos" :key="index">
+            <img :src="getImgUrl(photo.name)" class="d-block w-100" :alt="photo.category">
+          </div>
+        </div>
     </v-container>
 </template>
 
@@ -36,7 +42,28 @@ export default {
           'Paysage',
           'Nourriture',
           'Ville',
-          'Femme'
+          'Femme',
+          'Fantaisie'
+        ],
+        photos: [
+          { name: 'castle.jpg', category: 'ville' },
+          { name: 'cat.jpg', category: 'animaux' },
+          { name: 'clouds.jpg', category: 'fantaisie' },
+          { name: 'elephant.jpg', category: 'animaux' },
+          { name: 'fisherman.jpg', category: 'paysage' },
+          { name: 'frog.jpg', category: 'animaux' },
+          { name: 'galaxy.jpg', category: 'fantaisie' },
+          { name: 'gallo.jpg', category: 'animaux' },
+          { name: 'girl.jpg', category: 'femme' },
+          { name: 'landscape.jpg', category: 'paysage' },
+          { name: 'moulin.jpg', category: 'paysage' },
+          { name: 'mountains.jpg', category: 'paysage' },
+          { name: 'sad.jpg', category: 'femme' },
+          { name: 'street.jpg', category: 'ville' },
+          { name: 'sunset.jpg', category: 'paysage' },
+          { name: 'tree.jpg', category: 'paysage' },
+          { name: 'woman.jpg', category: 'femme' },
+          { name: 'women.jpg', category: 'femme' }
         ]
       }
     },
@@ -54,6 +81,12 @@ export default {
           })
           this.loading = false
         }, 500)
+      },
+      getImgUrl: function(photo) {
+        return require('../assets/' + photo)
+      },
+      show: function() {
+        console.log(this.select)
       }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="background">
     <v-app-bar
       dark
       extended
@@ -17,11 +17,10 @@
       </template>
 
       <v-spacer />
-      <v-toolbar-title class="h1">Lolo's Photos</v-toolbar-title>
+      <v-toolbar-title class="h1" id="main-title">Lolo's Photos</v-toolbar-title>
        <v-spacer />
       <template v-slot:extension>
         <v-tabs centered>
-          <v-tab @click="toAccueil">Accueil</v-tab>
           <v-tab @click="toPhotos">Mes photos</v-tab>
           <v-tab @click="toShooting">Shooting</v-tab>
           <v-tab @click="toContact">Me contacter</v-tab>
@@ -30,7 +29,6 @@
     </v-app-bar>
 
     <v-content style="margin-top: 250px">
-      <accueil v-if="accueil" />
       <photos v-if="photos" />
       <shooting v-if="shooting" />
       <contact v-if="contact" />
@@ -39,7 +37,6 @@
 </template>
 
 <script>
-import Accueil from './components/Accueil';
 import Photos from './components/Photos';
 import Shooting from './components/Shooting';
 import Contact from './components/Contact';
@@ -48,31 +45,20 @@ export default {
   name: 'App',
 
   components: {
-    Accueil,
     Photos,
     Shooting,
     Contact
   },
 
   data: () => ({
-      accueil: true,
-      photos: false,
+      photos: true,
       shooting: false,
       contact: false
   }),
 
   methods: {
-    toAccueil: function() {
-      if(!this.accueil) {
-        this.accueil = true
-        this.photos = false
-        this.shooting = false
-        this.contact = false
-      }
-    },
     toPhotos: function() {
       if(!this.photos) {
-        this.accueil = false
         this.photos = true
         this.shooting = false
         this.contact = false
@@ -80,7 +66,6 @@ export default {
     },
     toShooting: function() {
       if(!this.shooting) {
-        this.accueil = false
         this.photos = false
         this.shooting = true
         this.contact = false
@@ -88,7 +73,6 @@ export default {
     },
     toContact: function() {
       if(!this.contact) {
-        this.accueil = false
         this.photos = false
         this.shooting = false
         this.contact = true
