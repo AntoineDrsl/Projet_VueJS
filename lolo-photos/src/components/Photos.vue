@@ -21,7 +21,15 @@
         </v-toolbar>
         <div class="row mx-auto">
           <div class="col-md-4 w-100 h-100" v-for="(photo, index) of filteredPhotos" :key="index">
-            <img :src="getImgUrl(photo.name)" class="d-block w-100" :alt="photo.category">
+            <img :src="getImgUrl(photo.name)" class="d-block w-100" :alt="photo.category" @click="overlay = index">
+            <v-overlay :value="overlay === index">
+              <v-btn icon @click="overlay = false">
+                <div style="width: 50vw" id="img-overlay">
+                  <img :src="getImgUrl(photo.name)" alt="photo.category" class="w-100 mb-5">
+                </div>
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-overlay>
           </div>
         </div>
     </v-container>
@@ -36,6 +44,7 @@ export default {
         items: [],
         search: null,
         select: null,
+        overlay: false,
         categories: [
           'Animaux',
           'Paysage',
