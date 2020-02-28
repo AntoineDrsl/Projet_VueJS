@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div id="canvas">
-                    <div v-for="(pixel, index) in 90" :key="index" id="pixel"></div>
+                    <div v-for="(pixel, index) in 90" :key="index" :id="'pixel-' + index" class="pixel" @click="changeColor(index)"></div>
                 </div>
             </div>
             <div class="col-md-4">
@@ -18,7 +18,13 @@ export default {
     name: 'pixelart',
     data () {
         return {
-            selectedColor: ''
+            selectedColor: '',
+            color: []
+        }
+    },
+    methods: {
+        changeColor: function(index) {
+            document.getElementById('pixel-' + index).style.backgroundColor = this.selectedColor
         }
     }
 }

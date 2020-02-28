@@ -29,12 +29,12 @@
     border: 3px black solid;
 }
 
-#pixel{
+.pixel{
     width: 10%;
     height: 10%;
     display: inline-block;
     border: 1px grey solid;
 }
-#pixel:hover{
+.pixel:hover{
     cursor: pointer;
 }
