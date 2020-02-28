@@ -22,60 +22,60 @@
       <template v-slot:extension>
         <v-tabs centered>
           <v-tab @click="toPhotos">Mes photos</v-tab>
-          <v-tab @click="toShooting">Blog</v-tab>
-          <v-tab @click="toContact">Me contacter</v-tab>
+          <v-tab @click="toLikes">Vos likes</v-tab>
+          <v-tab @click="toPixelart">Créer son pixelArt</v-tab>
         </v-tabs>
       </template>
     </v-app-bar>
 
     <v-content style="margin-top: 250px">
       <photos v-if="photos" />
-      <shooting v-if="shooting" />
-      <contact v-if="contact" />
+      <likes v-if="likes" />
+      <pixelart v-if="pixelart" />
     </v-content>
   </v-app>
 </template>
 
 <script>
 import Photos from './components/Photos';
-import Shooting from './components/Shooting';
-import Contact from './components/Contact';
+import Likes from './components/Likes';
+import Pixelart from './components/Pixelart';
 
 export default {
   name: 'App',
 
   components: {
     Photos,
-    Shooting,
-    Contact
+    Likes,
+    Pixelart
   },
 
   data: () => ({
       photos: true,
-      shooting: false,
-      contact: false
+      likes: false,
+      pixelart: false
   }),
 
   methods: {
     toPhotos: function() {
       if(!this.photos) {
         this.photos = true
-        this.shooting = false
-        this.contact = false
+        this.likes = false
+        this.pixelart = false
       }
     },
-    toShooting: function() {
-      if(!this.shooting) {
+    toLikes: function() {
+      if(!this.likes) {
         this.photos = false
-        this.shooting = true
-        this.contact = false
+        this.likes = true
+        this.pixelart = false
       }
     },
-    toContact: function() {
-      if(!this.contact) {
+    toPixelart: function() {
+      if(!this.pixelart) {
         this.photos = false
-        this.shooting = false
-        this.contact = true
+        this.likes = false
+        this.pixelart = true
       }
     },
   }
